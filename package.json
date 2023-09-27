@@ -1,0 +1,22 @@
+{
+  "name": "cypress-learning",
+  "version": "1.0.0",
+  "description": "We will use this to learn cypress",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tashkk5/cypress-learning.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tashkk5/cypress-learning/issues"
+  },
+  "homepage": "https://github.com/Tashkk5/cypress-learning#readme",
+  "devDependencies": {
+    "cypress": "^13.2.0"
+  }
+}
