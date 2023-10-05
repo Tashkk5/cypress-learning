@@ -23,3 +23,11 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('login', (username, password) => {
+    cy.visit('https://dev.thingshub.smartmakers.de/ui/');
+    cy.get('#username').type(username)
+    cy.get('#password').type(password)
+    cy.get(`button[class='btn btn-block btn-primary']`).click()
+    cy.url().should('contain', '/home')
+  })
