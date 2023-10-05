@@ -5,41 +5,41 @@ describe('HomePage functionlity of ThingsHub', () => {
     cy.login('dnajafKT', 'Pakistan123');
   })
   
-  it('should open Bind Assets Tracker dialog',() => {
-    // expected test data
-
+  it(`should open "Bind Assets Tracker dialog" on clicking "Bind Tracked Assets" button`,() => {
     // elements of test case
-    const bindAsstenbtn = cy.get(':nth-child(2) > thub-button > div.ng-star-inserted > .btn')
-    bindAsstenbtn.click();
-    const AssetDialogHeader = cy.get('.m-0');
+    const bindAssetButtonElement = cy.get(':nth-child(2) > thub-button > div.ng-star-inserted > .btn');
 
-    
-     // action
-     
-     AssetDialogHeader.should('contain','Asset Tracker');
-
-     const CloseAssetDialogbtn = cy.get('.mr-2 > div.ng-star-inserted > .btn');
-     CloseAssetDialogbtn.click();
-
-  })
+    // action
+    bindAssetButtonElement.click();
 
 
-it ('should load more geofence events',() => {
-  // expected test data
+    // matching expectation
+    const assetDialogHeaderElement = cy.get('.m-0');
+    assetDialogHeaderElement.should('contain','Asset Tracker');
+  });
+
+
+it(`should load 15 more geofence events on clicking "Load More" button`,() => {
+  // test data
   const eventsCountIncrement = 30;
 
   // elements of test case
+  const loadMoreButtonElement = cy.get('.d-flex > .k-button');
 
-  const LoadMorebtn = cy.get('.thub-default-font').eq(0);
-  LoadMorebtn.click();
-
-  const items = cy.get('.w-100 > :nth-child(2) > span')
-  
   // action
-  items.should('contain.text', eventsCountIncrement);
+  loadMoreButtonElement.click();
 
-  
+  // matching expectations
+  const geofenceTableItemsCounterElement = cy.get('.w-100 > :nth-child(2) > span');
+  geofenceTableItemsCounterElement.should('contain.text', eventsCountIncrement);
+});
 
 })
 
-})
+
+
+/**
+ - Naming should be more explicit & in camelCase.
+ - Follow the sections in Golden rules more carefully.
+ - The second test case should test the initial value is 15 and after click its 30.
+ */
