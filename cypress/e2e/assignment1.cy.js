@@ -24,14 +24,14 @@ describe('Assignment 1 tasks', () => {
 
 
   it('Should navigate to tenant settings page by clicking on gear icon', () => {
-    cy.wait(4000);
+
     // test data
 
     // elements of test case
-    const gearIconElement = cy.get('.thub-setting-icon');
-    const expectedGearMatchingUrl = 'tenant-settings/users'
+    const gearIconElement = cy.get('.thub-setting-icon')
+
     // actions
-    gearIconElement.should('be.visible').click()
+    gearIconElement.click();
 
     //match expectations
     const Tenantsettingheading = cy.get('.col-3 > thub-page-title > .d-flex > .title > .page-title')
@@ -40,19 +40,42 @@ describe('Assignment 1 tasks', () => {
 
   });
   it('should open adduser modal by clicking on add user button', () => {
-    // testdata
-    // elements of test case
+    // Pre test steps
     const gearIconElement = cy.get('.thub-setting-icon');
+    gearIconElement.should('be.visible').click()
+    const Tenantsettingheading = cy.get('.col-3 > thub-page-title > .d-flex > .title > .page-title')
+    Tenantsettingheading.should('contain.text', 'Tenant Settings');
+
+
+    //elements of test case
     const expectedNewuserButton = cy.get('.btn > .ng-star-inserted');
-
-
     // actions
-    gearIconElement.should('be.visible').click();
     expectedNewuserButton.click()
 
     //match expectations
     const expectAdduserHeading = cy.get('.mat-dialog-title > .m-0')
     expectAdduserHeading.should('contain.text', 'Create New User');
+
+  })
+
+
+
+  it('should search username from search field', () => {
+    // Pre test steps
+    const gearIconElement = cy.get('.thub-setting-icon');
+    gearIconElement.should('be.visible').click()
+    const Tenantsettingheading = cy.get('.col-3 > thub-page-title > .d-flex > .title > .page-title')
+    Tenantsettingheading.should('contain.text', 'Tenant Settings');
+
+    //elements of test case
+    const searchUserField = cy.get('.form-control')
+
+    // actions
+    searchUserField.type('tashfeen')
+
+    //match expectations
+    const expectUsercountLabel = cy.get('.mat-paginator-range-label')
+    expectUsercountLabel.should('contain.text', '1 - 8 of 8')
 
   })
 
