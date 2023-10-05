@@ -48,6 +48,7 @@ describe('Assignment 1 tasks', () => {
 
 
     //elements of test case
+    
     const expectedNewuserButton = cy.get('.btn > .ng-star-inserted');
     // actions
     expectedNewuserButton.click()
