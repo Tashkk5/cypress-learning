@@ -31,12 +31,12 @@ it ('should load more geofence events',() => {
   // elements of test case
 
   const LoadMorebtn = cy.get('.thub-default-font').eq(0);
-  const items = cy.get('.w-100 > :nth-child(2) > span').invoke('text');
-  cy.log(items);
-  // action
- 
-  // console.log(count);
   LoadMorebtn.click();
+
+  const items = cy.get('.w-100 > :nth-child(2) > span')
+  
+  // action
+  items.should('contain.text', '30');
 
   
 
