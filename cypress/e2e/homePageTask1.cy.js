@@ -26,7 +26,7 @@ describe('HomePage functionlity of ThingsHub', () => {
 
 it ('should load more geofence events',() => {
   // expected test data
-  const eventsCountIncrement = 15;
+  const eventsCountIncrement = 30;
 
   // elements of test case
 
@@ -36,7 +36,7 @@ it ('should load more geofence events',() => {
   const items = cy.get('.w-100 > :nth-child(2) > span')
   
   // action
-  items.should('contain.text', '30');
+  items.should('contain.text', eventsCountIncrement);
 
   
 
