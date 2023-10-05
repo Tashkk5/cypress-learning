@@ -1,31 +1,39 @@
 /// <reference types="Cypress" />
 
+function loginIntoThingsHub() {
+  // test data
+  const validUsername = 'admin';
+  const validPassword = 'Sm@rtM@kers21';
+
+
+  // elements of test case
+  const usernameElement = cy.get('#username');
+  const passwordElement = cy.get('#password');
+  const loginButton = cy.get(`button[class='btn btn-block btn-primary']`);
+
+  // actions
+  usernameElement.type(validUsername);
+  passwordElement.type(validPassword);
+  loginButton.click();
+}
+
+function navigateToTenantSettings() {
+  const gearIconElement = cy.get('.thub-setting-icon');
+  gearIconElement.should('be.visible').click()
+}
+
 describe('Assignment 1 tasks', () => {
   beforeEach('', () => {
     cy.viewport('macbook-16');
     cy.visit('https://dev.thingshub.smartmakers.de/ui/');
-    // test data
-    const validUsername = 'admin';
-    const validPassword = 'Sm@rtM@kers21';
-
-
-    // elements of test case
-    const usernameElement = cy.get('#username');
-    const passwordElement = cy.get('#password');
-    const loginButton = cy.get(`button[class='btn btn-block btn-primary']`);
-
-    // actions
-    usernameElement.type(validUsername);
-    passwordElement.type(validPassword);
-    loginButton.click();
-
+    loginIntoThingsHub();
   });
 
 
 
   it('Should navigate to tenant settings page by clicking on gear icon', () => {
 
-    // test data
+    // test data missing test data
 
     // elements of test case
     const gearIconElement = cy.get('.thub-setting-icon')
@@ -34,28 +42,23 @@ describe('Assignment 1 tasks', () => {
     gearIconElement.click();
 
     //match expectations
-    const Tenantsettingheading = cy.get('.col-3 > thub-page-title > .d-flex > .title > .page-title')
-    Tenantsettingheading.should('contain.text', 'Tenant Settings');
-
-
+    const tenantSettingsHeadingElement = cy.get('.col-3 > thub-page-title > .d-flex > .title > .page-title');
+    tenantSettingsHeadingElement.should('contain.text', 'Tenant Settings');
   });
-  it('should open adduser modal by clicking on add user button', () => {
-    // Pre test steps
-    const gearIconElement = cy.get('.thub-setting-icon');
-    gearIconElement.should('be.visible').click()
-    const Tenantsettingheading = cy.get('.col-3 > thub-page-title > .d-flex > .title > .page-title')
-    Tenantsettingheading.should('contain.text', 'Tenant Settings');
 
+  it('should open add user modal by clicking on add user button', () => {
+    // Pre test steps
+    navigateToTenantSettings();
 
     //elements of test case
-    
-    const expectedNewuserButton = cy.get('.btn > .ng-star-inserted');
+    const newUserButtonElement = cy.get('.btn > .ng-star-inserted');
+
     // actions
-    expectedNewuserButton.click()
+    newUserButtonElement.click();
 
     //match expectations
-    const expectAdduserHeading = cy.get('.mat-dialog-title > .m-0')
-    expectAdduserHeading.should('contain.text', 'Create New User');
+    const expectAddUserHeadingElement = cy.get('.mat-dialog-title > .m-0')
+    expectAddUserHeadingElement.should('contain.text', 'Create New User'); // this should be in test data
 
   })
 
@@ -63,23 +66,29 @@ describe('Assignment 1 tasks', () => {
 
   it('should search username from search field', () => {
     // Pre test steps
-    const gearIconElement = cy.get('.thub-setting-icon');
-    gearIconElement.should('be.visible').click()
-    const Tenantsettingheading = cy.get('.col-3 > thub-page-title > .d-flex > .title > .page-title')
-    Tenantsettingheading.should('contain.text', 'Tenant Settings');
+    navigateToTenantSettings();
+
+    // test data missing
 
     //elements of test case
-    const searchUserField = cy.get('.form-control')
+    const searchUserInputFieldElement = cy.get('.form-control')
 
     // actions
-    searchUserField.type('tashfeen')
+    searchUserInputFieldElement.type('tashfeen') // test data
 
     //match expectations
-    const expectUsercountLabel = cy.get('.mat-paginator-range-label')
-    expectUsercountLabel.should('contain.text', '1 - 8 of 8')
+    const usersTableCountLabelElement = cy.get('.mat-paginator-range-label');
+    usersTableCountLabelElement.should('contain.text', '1 - 8 of 8');
 
   })
 
 })
+
+/**
+ - Improper variable names
+ - Missing test data
+ - Code repetition
+ - Miss semicolon
+ */
 
 
